@@ -56,7 +56,7 @@ def main():
     try:
       f = open(gridfile)
     except IOError:
-      print 'Error: can\'t read the file ' + gridfile +'\n'
+      print('Error: can\'t read the file ' + gridfile +'\n')
       return
     else:
       f.close
@@ -95,7 +95,7 @@ def main():
           values = np.concatenate((values, tmpvals))
           minvals = np.concatenate((minvals, tmpmins))
           maxvals = np.concatenate((maxvals, tmpmaxes))
-    print ''
+    print('')
 
 #   Store total number of variables
     nvars = len(varlist)
@@ -140,7 +140,7 @@ def main():
         plottype = 'exit'
         validtype = False
         plottypedone = False
-        print 'Error: plotting option ' + plotselection + ' not recognized.\n'
+        print('Error: plotting option ' + plotselection + ' not recognized.\n')
 
 #     User selects plotting variable from list
       if (validtype):
@@ -171,14 +171,14 @@ def main():
           else:
             validvar = False
             plotdone = False
-            print 'Error: plotting variable ' + plotnum + ' not recognized.\n'
+            print('Error: plotting variable ' + plotnum + ' not recognized.\n')
   
 #         Create the plot
           if (validvar):
             if varname != None:
-              print 'Max ' + varname + ': ', maxvar
-              print 'Min ' + varname + ': ', minvar
-              print ''
+              print('Max ' + varname + ': ', maxvar)
+              print('Min ' + varname + ': ', minvar)
+              print('')
             if plottype == 'grid':
               plot_grid(x, y, colormap, plaincolor, 
                         varname, plotvar, minvar, maxvar)
@@ -222,11 +222,11 @@ def is_int(string):
 ################################################################################
 def pyviz_init():
 
-  print '\nThis is PostPycess, the CFD postprocessor'
-  print 'Version: 1.1'
+  print('\nThis is PostPycess, the CFD postprocessor')
+  print('Version: 1.1')
   
-  pname = raw_input('\nEnter project name: ')
-  print ''
+  pname = input('\nEnter project name: ')
+  print('')
 
   return pname
 
@@ -282,7 +282,7 @@ def read_grid(fname):
         y[i,j] = float(f.readline())
 
 # Print message
-  print 'Successfully read grid file ' + fname
+  print('Successfully read grid file ' + fname)
 
 # Close the file
   f.close
@@ -338,7 +338,7 @@ def read_function_file(fname, imax, jmax, kmax, threed):
             mins[n] = values[n,i,j]
 
 # Print message
-  print 'Successfully read data file ' + fname
+  print('Successfully read data file ' + fname)
 
 # Close the file
   f.close
@@ -353,17 +353,17 @@ def read_function_file(fname, imax, jmax, kmax, threed):
 def select_plot_type():
 
 # Get user input
-  print 'Select plot type or other operation:\n'
-  print ' 1) Grid plot (grid only or colored by variable)'
-  print ' 2) Contour plot of variables on grid' 
-  print ' 3) Line plot of variables on surface' 
-  print ' O) Change PostPycess options' 
-  print ' L) Load new grid and data'
-  print ' Q) Quit PostPycess'
+  print('Select plot type or other operation:\n')
+  print(' 1) Grid plot (grid only or colored by variable)')
+  print(' 2) Contour plot of variables on grid' )
+  print(' 3) Line plot of variables on surface' )
+  print(' O) Change PostPycess options' )
+  print(' L) Load new grid and data')
+  print(' Q) Quit PostPycess')
 
-  plottype = raw_input('\nInput: ')
+  plottype = input('\nInput: ')
   if (plottype != 'L' and plottype != 'l'):
-    print ''
+    print('')
 
   return plottype
 
@@ -377,15 +377,15 @@ def select_plot_var(plottype, catglist, varlist):
   nvars = len(varlist)
 
 # Get user input for what to plot
-  print 'Select plotting variable for ' + plottype + ' plot:\n'
-  print ' 1) plain - show geometry only'
+  print('Select plotting variable for ' + plottype + ' plot:\n')
+  print(' 1) plain - show geometry only')
 
   for i in range(0, nvars):
-    print ' ' + str(i+2) + ') ' + varlist[i] + ' [' + catglist[i] + ']'
+    print(' ' + str(i+2) + ') ' + varlist[i] + ' [' + catglist[i] + ']')
 
-  print ' Q) go back to main menu'
-  plotvar = raw_input('\nInput: ')
-  print ''
+  print(' Q) go back to main menu')
+  plotvar = input('\nInput: ')
+  print('')
 
   return plotvar
 
@@ -418,15 +418,15 @@ def change_options(current_options):
   optdone = False
   while not optdone:
   
-    print 'Select option to change:\n'
+    print('Select option to change:\n')
 
     for i in range(0, nopts):
-      print ' ' + str(i+1) + ') ' + optlist[i] \
-            + ' (current = ' + str(current_options[i]) + ')'
+      print(' ' + str(i+1) + ') ' + optlist[i] \
+            + ' (current = ' + str(current_options[i]) + ')')
 
-    print ' Q) Go back to the main menu'
+    print(' Q) Go back to the main menu')
 
-    optselect = raw_input('\nInput: ')
+    optselect = input('\nInput: ')
 
 #   Change requested option
     new_options = current_options
@@ -450,9 +450,9 @@ def change_options(current_options):
     elif optselect == 'Q' or optselect == 'q':
       optdone = True
     else:
-      print '\nError: option ' + optselect + ' not recognized.\n'
+      print('\nError: option ' + optselect + ' not recognized.\n')
 
-  print ''
+  print('')
   return new_options
 
 ################################################################################
@@ -469,14 +469,14 @@ def change_list_option(input_list, optname, currentval):
   while not seldone:
 
 #   Print out available choices
-    print '\nAvailable choices for ' + optname + ':\n'
+    print('\nAvailable choices for ' + optname + ':\n')
 
     for i in range(0, nvals):
-      print ' ' + str(i+1) + ') ' + input_list[i]
+      print(' ' + str(i+1) + ') ' + input_list[i])
 
-    print ' Q) Go back to options menu'
+    print(' Q) Go back to options menu')
 
-    selected = raw_input('\nInput: ')
+    selected = input('\nInput: ')
 
 #   Change the option
     if is_int(selected) and int(selected) <= nvals:
@@ -486,10 +486,10 @@ def change_list_option(input_list, optname, currentval):
       seldone = True
       newval = currentval
     else:
-      print '\nError: option ' + selected + ' not recognized.'
+      print('\nError: option ' + selected + ' not recognized.')
       seldone = False
     
-  print ''
+  print('')
   return newval
 
 ################################################################################
@@ -503,10 +503,10 @@ def change_int_option(optname, currentval):
   while not seldone:
 
 #   Print out prompt
-    print '\nEnter new value for ' + optname 
-    print '  or Q to return to options menu:'
+    print('\nEnter new value for ' + optname )
+    print('  or Q to return to options menu:')
 
-    selected = raw_input('\nInput: ')
+    selected = input('\nInput: ')
 
 #   Change the option
     if is_int(selected):
@@ -516,10 +516,10 @@ def change_int_option(optname, currentval):
       seldone = True
       newval = currentval
     else:
-      print '\nError: option ' + selected + ' not recognized.\n'
+      print('\nError: option ' + selected + ' not recognized.\n')
       seldone = False
 
-  print ''
+  print('')
   return newval
 
 ################################################################################
@@ -567,10 +567,10 @@ def plot_grid(x, y, colormap=None, plaincolor=None,
 
 # Last four parameters optional: if not supplied, plain grid is plotted
   if varname == None:
-    print 'Plotting plain grid ...\n'
+    print('Plotting plain grid ...\n')
     colorplot = False
   else:
-    print 'Plotting grid colored by ' + varname + ' ...\n'
+    print('Plotting grid colored by ' + varname + ' ...\n')
     colorplot = True
 
 # Determine grid dimensions
@@ -752,10 +752,10 @@ def plot_contours(x, y, colormap=None, plaincolor=None, nlevels=None,
 
 # Last four parameters optional: if not supplied, only boundaries shown
   if varname == None:
-    print 'Plotting grid boundaries only ...\n'
+    print('Plotting grid boundaries only ...\n')
     contourplot = False
   else:
-    print 'Plotting contours of ' + varname + ' ...\n'
+    print('Plotting contours of ' + varname + ' ...\n')
     contourplot = True
 
   imax = x.shape[0]
@@ -863,10 +863,10 @@ def plot_surface(x, y, plaincolor=None, topcolor=None, botcolor=None,
 
 # Last two parameters optional: if not supplied, only surface shown
   if varname == None:
-    print 'Plotting airfoil surface only ...\n'
+    print('Plotting airfoil surface only ...\n')
     surfplot = False
   else:
-    print 'Plotting ' + varname + ' on airfoil surface ...\n'
+    print('Plotting ' + varname + ' on airfoil surface ...\n')
     surfplot = True
 
 # Determine airfoil boundaries (distinguish from symmetry boundary in C-grid)
