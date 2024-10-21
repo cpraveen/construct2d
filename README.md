@@ -1,5 +1,7 @@
 # Construct2D
 
+Code taken from: https://sourceforge.net/projects/construct2d/
+
 This is Construct2D, a structured grid generator designed for 2D airfoils.
 
 Copyright 2013 -- 2018 Daniel Prosser.
